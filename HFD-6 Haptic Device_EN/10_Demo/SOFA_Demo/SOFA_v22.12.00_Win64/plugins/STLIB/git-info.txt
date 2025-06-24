@@ -1,0 +1,30 @@
+# Git info for STLIB
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+c0e66297fe40bb7e00db92df5969f737f001f650
+
+## Branches containing current commit
+## git branch -a --contains c0e66297fe40bb7e00db92df5969f737f001f650 
+* (HEAD detached at c0e6629)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/pr/90/merge
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/sofadefrost/STLIB.git (fetch)
+origin	https://github.com/sofadefrost/STLIB.git (push)
+
+## More info
+## git log --pretty -n 1
+commit c0e66297fe40bb7e00db92df5969f737f001f650
+Merge: 489aa9e 624fcea
+Author: pchaillo <99733932+pchaillo@users.noreply.github.com>
+Date:   Fri Dec 9 11:56:05 2022 +0100
+
+    Merge pull request #91 from alxbilger/revert
+    
+    Revert "1st commit on my fork"

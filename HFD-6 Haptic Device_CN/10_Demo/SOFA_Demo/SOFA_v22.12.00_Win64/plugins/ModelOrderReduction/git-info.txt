@@ -1,0 +1,26 @@
+# Git info for ModelOrderReduction
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+9369b2144d759e5298edea53161dc14395ee9983
+
+## Branches containing current commit
+## git branch -a --contains 9369b2144d759e5298edea53161dc14395ee9983 
+* (HEAD detached at 9369b21)
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/SofaDefrost/ModelOrderReduction.git (fetch)
+origin	https://github.com/SofaDefrost/ModelOrderReduction.git (push)
+
+## More info
+## git log --pretty -n 1
+commit 9369b2144d759e5298edea53161dc14395ee9983
+Merge: 17f6f9e b2fd16d
+Author: Hugo <hugo.talbot@sofa-framework.org>
+Date:   Wed Jan 11 17:13:33 2023 +0100
+
+    Merge pull request #67 from hugtalbot/v2212test2
+    
+    Fixing MacOS compilation

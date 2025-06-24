@@ -1,0 +1,20 @@
+		g3log created log at: Fri Sep 06 15:39:37 2024
+		LOG format: [YYYY/MM/DD hh:mm:ss uuu* LEVEL FILE->FUNCTION:LINE] message		(uuu*: microsecond counter since initialization of log worker)
+
+
+2024/09/06 15:39:37 0	INFO [PbdConnectiveTissueExample.cpp->makeGallBladder:115]	"Per particle mass: 0.000232558"
+2024/09/06 15:39:37 286	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"Gallbladder entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 132020	INFO [PbdConnectiveTissueExample.cpp->makeKidney:172]	"Per particle mass: 0.000205479"
+2024/09/06 15:39:37 132039	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"Kidney entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 147364	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"connectiveTissue entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 147436	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"Tool entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 147578	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"PbdObjectCollision_connectiveTissue_vs_Tool entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 147599	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"PbdObjectCollision_Gallbladder_vs_Tool entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 147608	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"SceneObject entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 147616	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:321]	"Entity with name SceneObject already in scene. Renamed to SceneObject_1"
+2024/09/06 15:39:37 147618	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"SceneObject_1 entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 147638	INFO [imstkScene.cpp->imstk::Scene::addLight:399]	"Light light added to PbdConnectiveTissue"
+2024/09/06 15:39:37 236926	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"DefaultSceneControlEntity entity added to PbdConnectiveTissue scene"
+2024/09/06 15:39:37 350074	INFO [imstkScene.cpp->imstk::Scene::initialize:137]	"Scene 'PbdConnectiveTissue' initialized!"
+2024/09/06 15:39:38 1439092	INFO [imstkHFDHapticDeviceClient.cpp->imstk::HFDHapticDeviceClient::initialize:83]	""" successfully initialized."
+g3log g3FileSink shutdown at: 15:39:49

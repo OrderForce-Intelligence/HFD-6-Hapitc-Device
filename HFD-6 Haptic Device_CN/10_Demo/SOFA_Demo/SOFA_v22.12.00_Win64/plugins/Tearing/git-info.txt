@@ -1,0 +1,24 @@
+# Git info for Tearing
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+5e61983553204a2756169fc422ee34d6c2fa6aab
+
+## Branches containing current commit
+## git branch -a --contains 5e61983553204a2756169fc422ee34d6c2fa6aab 
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/InfinyTech3D/Tearing.git (fetch)
+origin	https://github.com/InfinyTech3D/Tearing.git (push)
+
+## More info
+## git log --pretty -n 1
+commit 5e61983553204a2756169fc422ee34d6c2fa6aab
+Author: epernod <erik.pernod@gmail.com>
+Date:   Mon Jan 9 16:29:24 2023 +0100
+
+    [ci] Fix mac clean

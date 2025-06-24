@@ -1,0 +1,23 @@
+# Git info for Sofa
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+bb667c4039612367d4545ea05ae74e2a4bc9cc3f
+
+## Branches containing current commit
+## git branch -a --contains bb667c4039612367d4545ea05ae74e2a4bc9cc3f 
+* (HEAD detached at bb667c4039)
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/sofa-framework/sofa.git (fetch)
+origin	https://github.com/sofa-framework/sofa.git (push)
+
+## More info
+## git log --pretty -n 1
+commit bb667c4039612367d4545ea05ae74e2a4bc9cc3f
+Author: Hugo Talbot <hugo.talbot@sofa-framework.org>
+Date:   Wed Jan 11 14:39:11 2023 +0100
+
+    Update CHANGELOG.md with latest commits

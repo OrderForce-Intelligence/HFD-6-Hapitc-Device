@@ -1,0 +1,220 @@
+import Sofa
+import math
+from math import cos
+from math import sin
+from math import asin
+from math import sqrt
+import numpy
+import os
+path = os.path.dirname(os.path.abspath(__file__))+'/mesh/'
+dirPath = os.path.dirname(os.path.abspath(__file__))+'/'
+
+#Takes a 3d vector and normalize it
+def normalize(x):
+    norm = numpy.sqrt(x[0]*x[0] + x[1]*x[1] + x[2]*x[2])
+    for i in range(0,3):
+        x[i] = x[i]/norm
+
+#Multiplication of two quaternions (gives the composition of the two rotation)
+def rotateQuat(q1,q2):
+
+    c0 = q1[6]*q2[3] - q1[3]*q2[0] - q1[4]*q2[1] - q1[5]*q2[2]
+    c1 = q1[6]*q2[0] + q1[3]*q2[3] - q1[4]*q2[2] + q1[5]*q2[1]
+    c2 = q1[6]*q2[1] + q1[4]*q2[3] + q1[3]*q2[2] - q1[5]*q2[0]
+    c3 = q1[5]*q2[3] - q1[6]*q2[2] + q1[3]*q2[1] + q1[4]*q2[0]
+
+    q1 = [q1[0],q1[1],q1[2],c1,c2,c3,c0]
+
+    return q1
+
+#Rotate a vector using a quaternion v'=qvq(-1)
+def rotate(v,q):
+
+    c0 = ((1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2]))*v[0] + (2.0 * (q[0] * q[1] - q[2] * q[3])) * v[1] + (2.0 * (q[2] * q[0] + q[1] * q[3])) * v[2])
+    c1 = ((2.0 * (q[0] * q[1] + q[2] * q[3]))*v[0] + (1.0 - 2.0 * (q[2] * q[2] + q[0] * q[0]))*v[1] + (2.0 * (q[1] * q[2] - q[0] * q[3]))*v[2])
+    c2 = ((2.0 * (q[2] * q[0] - q[1] * q[3]))*v[0] + (2.0 * (q[1] * q[2] + q[0] * q[3]))*v[1] + (1.0 - 2.0 * (q[1] * q[1] + q[0] * q[0]))*v[2])
+
+    v[0] = c0
+    v[1] = c1
+    v[2] = c2
+
+    return v
+
+def createTransformBeamDOFUsingPosBeamInfo(PosNode0, PosNode1, PosDOF0, PosDOF1, dX, angle):
+    # we consider that the DOF are oriented along the axis of the scene
+
+    DOFTransformNode=[ [0, 0, 0, 0, 0, 0, 1]]*2;
+    for i in range(3):
+        DOFTransformNode[0][i] = PosNode0[i]-PosDOF0[i];
+        DOFTransformNode[1][i] = PosNode1[i]-PosDOF1[i];
+
+    direction = [0]*3
+    direction[0] = PosNode1[0] - PosNode0[0]
+    direction[1] = PosNode1[1] - PosNode0[1]
+    direction[2] = PosNode1[2] - PosNode0[2]
+    normalize(direction)
+    direction = [direction[0]*dX, direction[1]*dX, direction[2]*dX]
+
+    DOFTransformNode[0] = [DOFTransformNode[0][0] +direction[0], DOFTransformNode[0][1]+direction[1], DOFTransformNode[0][2]+direction[2], DOFTransformNode[0][3], DOFTransformNode[0][4], DOFTransformNode[0][5], DOFTransformNode[0][6]];
+    DOFTransformNode[1] = [DOFTransformNode[1][0] , DOFTransformNode[1][1], DOFTransformNode[1][2], DOFTransformNode[1][3], DOFTransformNode[1][4], DOFTransformNode[1][5], DOFTransformNode[1][6]];
+
+    q = [0, 0, sin(angle/2), cos(angle/2)]
+    DOFTransformNode[1] = rotateQuat(DOFTransformNode[1], q)
+    return DOFTransformNode;
+
+
+#Takes a n dimensional vector and transform it into a string
+def transformTableInString(Table):
+        sizeT =  len(Table);
+        strOut= ' ';
+        for p in range(sizeT):
+            strOut = strOut+ str(Table[p])+' '
+
+        return strOut
+
+
+#Takes a n dimensional vector of vector and transform it into a simple vector
+def transformDoubleTableInSimpleTable(Table):
+    size0 =  len(Table);
+
+    # count the size
+    size=0;
+    for i in range(size0):
+        size = size+len(Table[i]);
+
+    TableOut=[0]*size;
+    s=0;
+    for i in range(size0):
+        for j in range(len(Table[i])):
+            TableOut[s] = Table[i][j];
+            s=s+1;
+
+    return TableOut
+
+
+def addCircles(length, height, angle):
+
+    #Initialize position of nodes and edges list
+    posNode = [ [0,0,0] ]*5
+    edgeList = [[0, 2], [1, 2], [0, 3], [1, 3], [0, 4], [1, 4]]
+    posNode[0] = [0, 0, 0]
+    posNode[1] = [0, height*2, 0]
+    posNode[2] = [length, height, 0]
+
+    for k in [3,4]: #Compute the four other beams positions by applying a rotation of 120 and 240 degrees
+        v = [posNode[2][0] - posNode[0][0], posNode[2][1] - posNode[0][1], posNode[2][2] - posNode[0][2]]
+        theta = 2.0944*(k-2)
+        q = [0., sin(theta/2.), 0., cos(theta/2.)]
+        v = rotate(v,q)
+        posNode[k] = [posNode[0][0] + v[0], posNode[0][1] + v[1], posNode[0][2] + v[2]]
+
+    #Computation of the transformation beam / nodes (to allow straight beams not aligned with x)
+    numBeam = len(edgeList)
+
+    DOF0TransformNode0 = [ [0,0,0,0,0,0,1] ]*numBeam
+    DOF1TransformNode1 = [ [0,0,0,0,0,0,1] ]*numBeam
+
+    for b in range(numBeam):
+        posNode0=[0]*3;
+        posNode1=[1]*3;
+
+        for i in range(3):
+            posNode0[i] = posNode[edgeList[b][0]][i]
+            posNode1[i] = posNode[edgeList[b][1]][i]
+
+        if b%2 ==0:
+            Transform = createTransformBeamDOFUsingPosBeamInfo(posNode0, posNode1 , posNode0 , posNode1, 0., -angle)
+        else :
+            Transform = createTransformBeamDOFUsingPosBeamInfo(posNode0, posNode1 , posNode0 , posNode1, 0., angle)
+
+        DOF0TransformNode0[b] = Transform[0]
+        DOF1TransformNode1[b] = Transform[1]
+
+    #Rotate beams frame
+    i = 1
+    for k in range(2,6):
+        theta = 2.0944*i
+        if k%2==1: i = i+1
+        q=[0,sin(theta/2.),0,cos(theta/2.)]
+        DOF0TransformNode0[k] = rotateQuat(DOF0TransformNode0[k],q)
+        DOF1TransformNode1[k] = rotateQuat(DOF1TransformNode1[k],q)
+
+    return [posNode, edgeList, DOF0TransformNode0, DOF1TransformNode1]
+
+
+def createScene(rootNode):
+
+                rootNode.addObject('RequiredPlugin', name='SoftRobots')
+                rootNode.addObject('RequiredPlugin', name='SoftRobots.Inverse')
+                rootNode.addObject('RequiredPlugin', name='BeamAdapter')
+                rootNode.addObject('RequiredPlugin', name='SofaPlugins', pluginName=['SofaConstraint','SofaImplicitOdeSolver','SofaRigid','SofaSparseSolver'])
+                rootNode.addObject('VisualStyle', displayFlags='showVisualModels showBehaviorModels showCollisionModels hideBoundingCollisionModels showForceFields hideInteractionForceFields hideWireframe')
+
+                rootNode.findData('dt').value= 0.01
+                rootNode.findData('gravity').value=[0, -9810, 0]
+                rootNode.addObject('FreeMotionAnimationLoop')
+                rootNode.addObject('QPInverseProblemSolver', epsilon='1e-1', printLog="0", displayTime="0", tolerance="1e-8", maxIterations="2500")
+
+                rootNode.addObject('BackgroundSetting', color='0 0.168627 0.211765')
+                rootNode.addObject('OglSceneFrame', style="Arrows", alignment="TopRight")
+
+                #########################################
+                # goal
+                ##########################################
+                goal = rootNode.addChild('goal')
+                goal.addObject('VisualStyle', displayFlags="showCollisionModels")
+                goal.addObject('EulerImplicitSolver', firstOrder=True)
+                goal.addObject('CGLinearSolver', iterations='100', tolerance="1e-5", threshold="1e-5")
+                goal.addObject('MechanicalObject', name='goalMO', template="Vec3", showObject="1", drawMode="1", showObjectScale="3", position='0  20  0')
+                goal.addObject('UncoupledConstraintCorrection')
+
+                #########################################
+                # solver
+                ##########################################
+                solverNode = rootNode.addChild('Solver')
+                solverNode.addObject('EulerImplicitSolver', name='odesolver', firstOrder=False, rayleighStiffness="4.0")
+                solverNode.addObject('SparseLDLSolver', name='ldlsolveur', template="CompressedRowSparseMatrixd")
+                solverNode.addObject('GenericConstraintCorrection', solverName='ldlsolveur')
+
+                ##########################################
+                # Beam Model                             #
+                ##########################################
+                posNode = []; edgeList = []; DOF0TransformNode0 = []; DOF1TransformNode1 = []
+                [posNode, edgeList, DOF0TransformNode0, DOF1TransformNode1] = addCircles(20, 20, 1.57)
+
+                posNodeStr = transformTableInString(transformDoubleTableInSimpleTable(posNode))
+                edgeListStr = transformTableInString(transformDoubleTableInSimpleTable(edgeList))
+                DOF0TransformNode0Str = transformTableInString(transformDoubleTableInSimpleTable(DOF0TransformNode0))
+                DOF1TransformNode1Str = transformTableInString(transformDoubleTableInSimpleTable(DOF1TransformNode1))
+
+                FramesNode = solverNode.addChild("framesNode")
+                FramesNode.addObject('MeshTopology', position=posNodeStr, edges=edgeListStr );
+                FramesNode.addObject('MechanicalObject', template="Rigid3",name='frame',
+                    showObject="1",
+                    showObjectScale="0.001")
+                FramesNode.addObject('BarycentricCenterEffector', template="Rigid3",
+                        effectorGoal="@../../goal/goalMO.position",
+                        axis="1 1 1")
+
+                topo = FramesNode.addChild("topo")
+                topo.addObject('MeshTopology', position=posNodeStr, edges=edgeListStr)
+                topo.addObject('BeamInterpolation', name="BeamInterpolation", defaultYoungModulus="100000",
+                    dofsAndBeamsAligned=False, straight='0', crossSectionShape="rectangular",
+                    lengthZ=4,
+                    lengthY=4,
+                    DOF0TransformNode0=DOF0TransformNode0Str,
+                    DOF1TransformNode1=DOF1TransformNode1Str)
+                topo.addObject('AdaptiveBeamForceFieldAndMass', name="BeamForceField", computeMass="1", massDensity="0.0001")
+
+                ##########################################
+                # Cable Model                            #
+                ##########################################
+                cable = FramesNode.addChild('Cables')
+                cable.addObject('VisualStyle', displayFlags="showInteractionForceFields")
+                cable.addObject('MechanicalObject' , template='Vec3', position="0. 0. 0. 0. 0. 0.")
+                cable.addObject('CableActuator', name="cable1", indices="0", pullPoint="0 60 0", minForce="0", maxPositiveDisp="10", maxDispVariation="1")
+                cable.addObject('CableActuator', name="cable2", indices="1", pullPoint="40 20 0", minForce="0", maxPositiveDisp="10", maxDispVariation="1")
+                cable.addObject('RigidMapping', rigidIndexPerPoint="1 2", input="@../", output="@./", mapForces=False, mapMasses=False)
+
+
+                return rootNode

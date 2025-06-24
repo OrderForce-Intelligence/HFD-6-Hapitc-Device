@@ -1,0 +1,12 @@
+		g3log created log at: Sat Apr 19 18:15:21 2025
+		LOG format: [YYYY/MM/DD hh:mm:ss uuu* LEVEL FILE->FUNCTION:LINE] message		(uuu*: microsecond counter since initialization of log worker)
+
+
+2025/04/19 18:15:21 0	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"Femur entity added to FemurCut scene"
+2025/04/19 18:15:21 5785	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"ToolObject entity added to FemurCut scene"
+2025/04/19 18:15:21 5979	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"RigidObjectLevelSetCollisionToolObject_vs_Femur entity added to FemurCut scene"
+2025/04/19 18:15:21 6070	INFO [imstkScene.cpp->imstk::Scene::addLight:399]	"light light added to FemurCut"
+2025/04/19 18:15:21 8000	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"DefaultSceneControlEntity entity added to FemurCut scene"
+2025/04/19 18:15:21 24587	INFO [imstkScene.cpp->imstk::Scene::initialize:137]	"Scene 'FemurCut' initialized!"
+2025/04/19 18:15:23 1696791	INFO [imstkHFDHapticDeviceClient.cpp->imstk::HFDHapticDeviceClient::initialize:83]	""" successfully initialized."
+g3log g3FileSink shutdown at: 18:17:08

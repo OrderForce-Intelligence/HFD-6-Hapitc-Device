@@ -1,0 +1,13 @@
+		g3log created log at: Sat Apr 19 09:54:43 2025
+		LOG format: [YYYY/MM/DD hh:mm:ss uuu* LEVEL FILE->FUNCTION:LINE] message		(uuu*: microsecond counter since initialization of log worker)
+
+
+2025/04/19 09:54:43 0	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"Femur entity added to FemurCut scene"
+2025/04/19 09:54:43 5040	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"ToolObject entity added to FemurCut scene"
+2025/04/19 09:54:43 5286	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"RigidObjectLevelSetCollisionToolObject_vs_Femur entity added to FemurCut scene"
+2025/04/19 09:54:43 5299	INFO [imstkScene.cpp->imstk::Scene::addLight:399]	"light light added to FemurCut"
+2025/04/19 09:54:43 8507	INFO [imstkScene.cpp->imstk::Scene::addSceneObject:327]	"DefaultSceneControlEntity entity added to FemurCut scene"
+2025/04/19 09:54:43 28003	INFO [imstkScene.cpp->imstk::Scene::initialize:137]	"Scene 'FemurCut' initialized!"
+2025/04/19 09:54:45 1619787	INFO [imstkHFDHapticDeviceClient.cpp->imstk::HFDHapticDeviceClient::initialize:21]	"Failed to Open HFD_Mini
+Error Description:No Device Connected to the System"
+g3log g3FileSink shutdown at: 09:54:54

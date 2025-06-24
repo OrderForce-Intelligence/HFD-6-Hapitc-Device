@@ -1,0 +1,26 @@
+# Git info for OptiTrackNatNet
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+56f538f572ee1db6d45a1e1c27b23d00e06734c3
+
+## Branches containing current commit
+## git branch -a --contains 56f538f572ee1db6d45a1e1c27b23d00e06734c3 
+* (HEAD detached at origin/v22.12)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/sofa-framework/OptiTrackNatNet (fetch)
+origin	https://github.com/sofa-framework/OptiTrackNatNet (push)
+
+## More info
+## git log --pretty -n 1
+commit 56f538f572ee1db6d45a1e1c27b23d00e06734c3
+Author: Hugo <hugo.talbot@sofa-framework.org>
+Date:   Wed Jul 27 08:07:29 2022 +0200
+
+    Remove warning from OptiTrackNatNetDevice.cpp

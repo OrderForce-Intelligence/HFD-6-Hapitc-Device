@@ -1,0 +1,31 @@
+# Git info for SoftRobots.Inverse
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+d9c189f376261856138d4f66ac01ad997ab9b5fc
+
+## Branches containing current commit
+## git branch -a --contains d9c189f376261856138d4f66ac01ad997ab9b5fc 
+* (HEAD detached at d9c189f3)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://oauth2:<token>@gitlab.inria.fr/defrost/plugins/SoftRobots.Inverse.git (fetch)
+origin	https://oauth2:<token>@gitlab.inria.fr/defrost/plugins/SoftRobots.Inverse.git (push)
+
+## More info
+## git log --pretty -n 1
+commit d9c189f376261856138d4f66ac01ad997ab9b5fc
+Merge: fa907324 7986c71a
+Author: Eulalie Coevoet <eulalie.coevoet@gmail.com>
+Date:   Thu Nov 10 12:32:03 2022 +0000
+
+    Merge branch 'pr-eulaliecleaning' into 'master'
+    
+    [all] cleaning (removes deprecated GS)
+    
+    See merge request defrost/plugins/SoftRobots.Inverse!63

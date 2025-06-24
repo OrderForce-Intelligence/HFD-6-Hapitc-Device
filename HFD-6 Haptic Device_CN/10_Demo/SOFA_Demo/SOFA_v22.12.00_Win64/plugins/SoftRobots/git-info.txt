@@ -1,0 +1,29 @@
+# Git info for SoftRobots
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+100e7cab50d458998119eba26fb85be5f6a76343
+
+## Branches containing current commit
+## git branch -a --contains 100e7cab50d458998119eba26fb85be5f6a76343 
+* (HEAD detached at 100e7ca)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/pr/179/head
+  remotes/origin/pr/179/merge
+  remotes/origin/tag/release-master
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/sofadefrost/softRobots.git (fetch)
+origin	https://github.com/sofadefrost/softRobots.git (push)
+
+## More info
+## git log --pretty -n 1
+commit 100e7cab50d458998119eba26fb85be5f6a76343
+Author: EulalieCoevoet <eulalie.coevoet@gmail.com>
+Date:   Wed Nov 9 16:50:11 2022 +0100
+
+    [all] cleaning (#193)

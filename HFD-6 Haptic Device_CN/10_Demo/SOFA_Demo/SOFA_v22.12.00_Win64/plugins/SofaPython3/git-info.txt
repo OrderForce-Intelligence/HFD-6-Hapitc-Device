@@ -1,0 +1,27 @@
+# Git info for SofaPython3
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+b7ace65d1e531a1650c2bea5aea640ee71c581da
+
+## Branches containing current commit
+## git branch -a --contains b7ace65d1e531a1650c2bea5aea640ee71c581da 
+* (HEAD detached at origin/v22.12)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/pr/329/merge
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/sofa-framework/SofaPython3 (fetch)
+origin	https://github.com/sofa-framework/SofaPython3 (push)
+
+## More info
+## git log --pretty -n 1
+commit b7ace65d1e531a1650c2bea5aea640ee71c581da
+Author: Frederick Roy <fredroy@users.noreply.github.com>
+Date:   Wed Jan 4 21:56:10 2023 +0900
+
+    fix mac ci with homebrew workaround (#328)

@@ -1,0 +1,33 @@
+# Git info for InfinyToolkit
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+01645fda5de40284413b14f683cd726ebe45d98c
+
+## Branches containing current commit
+## git branch -a --contains 01645fda5de40284413b14f683cd726ebe45d98c 
+* (HEAD detached at 01645fd)
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/origin/pliers_tools
+  remotes/origin/pr/11/head
+  remotes/origin/pr/16/head
+  remotes/origin/pr/16/merge
+  remotes/origin/tag/release-cutting_demo
+  remotes/origin/tag/release-pliers_tools
+  remotes/origin/tag/release-v22.12
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/InfinyTech3D/InfinyToolkit.git (fetch)
+origin	https://github.com/InfinyTech3D/InfinyToolkit.git (push)
+
+## More info
+## git log --pretty -n 1
+commit 01645fda5de40284413b14f683cd726ebe45d98c
+Author: erik pernod <erik.pernod@gmail.com>
+Date:   Tue Dec 27 10:05:00 2022 +0100
+
+    [ci] Fix mac clean (#15)

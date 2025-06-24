@@ -1,0 +1,33 @@
+# Git info for PluginExample
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+4907215a9965c35801e59302d28881bbb6978b72
+
+## Branches containing current commit
+## git branch -a --contains 4907215a9965c35801e59302d28881bbb6978b72 
+* (HEAD detached at origin/v22.12)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/pr/2/head
+  remotes/origin/pr/2/merge
+  remotes/origin/v22.06
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/sofa-framework/PluginExample (fetch)
+origin	https://github.com/sofa-framework/PluginExample (push)
+
+## More info
+## git log --pretty -n 1
+commit 4907215a9965c35801e59302d28881bbb6978b72
+Author: Frederick Roy <fredroy@users.noreply.github.com>
+Date:   Fri Nov 26 16:47:15 2021 +0100
+
+    Fix cmake and add CI github (#1)
+    
+    * Create  ci.yml
+    
+    * Update CMakeLists.txt

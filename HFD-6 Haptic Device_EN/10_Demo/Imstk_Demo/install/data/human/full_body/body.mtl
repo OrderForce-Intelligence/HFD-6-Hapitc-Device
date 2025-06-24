@@ -1,0 +1,12 @@
+# Blender MTL File: 'vlahhs.blend'
+# Material Count: 1
+
+newmtl DefaultSkin
+Ns 19.538958
+Ka 1.000000 1.000000 1.000000
+Kd 0.804000 0.608300 0.489300
+Ks 0.190821 0.190821 0.190821
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2

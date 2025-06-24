@@ -1,0 +1,10 @@
+float32 vx
+float32 vy
+float32 vz
+float32 rx
+float32 ry
+float32 rz
+float32 x
+float32 y
+float32 z
+bool hfdButtonStatus

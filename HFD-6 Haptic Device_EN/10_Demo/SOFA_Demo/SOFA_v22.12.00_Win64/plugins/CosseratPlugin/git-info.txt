@@ -1,0 +1,30 @@
+# Git info for CosseratPlugin
+
+## Current commit
+## git rev-parse --abbrev-ref HEAD
+9995ecaf768124d8604bfa2b3cb88d32cabd33b1
+
+## Branches containing current commit
+## git branch -a --contains 9995ecaf768124d8604bfa2b3cb88d32cabd33b1 
+* (HEAD detached at 9995eca)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/tag/release-v22.12
+  remotes/origin/v22.12
+
+## Remotes
+## git remote -vv 
+origin	https://github.com/SofaDefrost/plugin.cosserat.git (fetch)
+origin	https://github.com/SofaDefrost/plugin.cosserat.git (push)
+
+## More info
+## git log --pretty -n 1
+commit 9995ecaf768124d8604bfa2b3cb88d32cabd33b1
+Merge: 2fb72ad d83e70e
+Author: Hugo <hugo.talbot@sofa-framework.org>
+Date:   Wed Jan 11 12:02:03 2023 +0100
+
+    Merge pull request #61 from alxbilger/ciupdate
+    
+    Fix CI
